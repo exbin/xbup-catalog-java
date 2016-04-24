@@ -4,6 +4,8 @@ apply plugin: 'maven'
 
 sourceCompatibility = '1.7'
 version = '0.2.0-SNAPSHOT'
+ext.xbupVersion = '0.2.0-SNAPSHOT'
+
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 if (!hasProperty('mainClass')) {
     ext.mainClass = ''
@@ -18,6 +20,7 @@ tasks.withType(JavaCompile) {
 }
 
 repositories {
+    mavenLocal()
     mavenCentral()
     flatDir {
         dirs "../../lib"
@@ -28,8 +31,8 @@ repositories {
 check.dependsOn.remove(test)
 
 dependencies {
-    compile(project(":modules:xbup-core"))
-    compile(project(":modules:xbup-catalog"))
+    compile "org.exbin.xbup:xbup-core:${xbupVersion}"
+    compile "org.exbin.xbup:xbup-catalog:${xbupVersion}"
     providedCompile 'javax.servlet:servlet-api:2.5'
     providedCompile 'javax.servlet.jsp:jsp-api:2.2'
     providedCompile 'org.eclipse.persistence:org.eclipse.persistence.jpa.modelgen.processor:2.5.1'
