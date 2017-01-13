@@ -36,7 +36,7 @@ import org.springframework.stereotype.Repository;
 /**
  * XBUP catalog XBEPackageRecord manager.
  *
- * @version 0.1.23 2014/05/23
+ * @version 0.2.0 2017/01/13
  * @author ExBin Project (http://exbin.org)
  */
 @Repository
@@ -91,7 +91,7 @@ public class XBEPackageRecordManager implements XBCPackageRecordManager {
                 + " LEFT JOIN XBXName name ON name.item = node AND name.lang.id = " + languageId
                 + " LEFT JOIN XBXStri stri ON stri.item = node ORDER BY node.id";
         Query query = em.createQuery(queryString);
-        List<XBCPackageRecord> results = new ArrayList<XBCPackageRecord>();
+        List<XBCPackageRecord> results = new ArrayList<>();
         for (Object row : query.getResultList()) {
             XBEPackageRecord packageRecord = new XBEPackageRecord();
             packageRecord.setNode((XBENode) ((Object[]) row)[0]);
@@ -163,7 +163,7 @@ public class XBEPackageRecordManager implements XBCPackageRecordManager {
         query.setFirstResult(startFrom);
         query.setMaxResults(maxResults);
 
-        List<XBCPackageRecord> results = new ArrayList<XBCPackageRecord>();
+        List<XBCPackageRecord> results = new ArrayList<>();
         for (Object row : query.getResultList()) {
             XBEPackageRecord packageRecord = new XBEPackageRecord();
             packageRecord.setNode((XBENode) ((Object[]) row)[0]);
@@ -177,9 +177,9 @@ public class XBEPackageRecordManager implements XBCPackageRecordManager {
 
     @Override
     public List<XBCPackageRecord> findFullTree() {
-        List<XBCPackageRecord> resultList = new ArrayList<XBCPackageRecord>();
-        List<List<XBCPackageRecord>> parentLists = new ArrayList<List<XBCPackageRecord>>();
-        List<XBCPackageRecord> rootList = new LinkedList<XBCPackageRecord>();
+        List<XBCPackageRecord> resultList = new ArrayList<>();
+        List<List<XBCPackageRecord>> parentLists = new ArrayList<>();
+        List<XBCPackageRecord> rootList = new LinkedList<>();
         XBEPackageRecord root = getItem(nodeManager.getRootNode().getId());
         root.setHasChildren(true);
 
@@ -216,13 +216,13 @@ public class XBEPackageRecordManager implements XBCPackageRecordManager {
                 + " WHERE node.parent.id = " + parentPackage.getId()
                 + " ORDER BY name.text, node.id");
 
-        List<XBCPackageRecord> results = new ArrayList<XBCPackageRecord>();
+        List<XBCPackageRecord> results = new ArrayList<>();
         for (Object row : query.getResultList()) {
             XBEPackageRecord packageRecord = new XBEPackageRecord();
             packageRecord.setNode((XBENode) ((Object[]) row)[0]);
             packageRecord.setName((XBEXName) ((Object[]) row)[1]);
             packageRecord.setStri((XBEXStri) ((Object[]) row)[2]);
-            packageRecord.setHasChildren((Integer) ((Object[]) row)[3] == 1);
+            packageRecord.setHasChildren((Long) ((Object[]) row)[3] == 1);
             packageRecord.setPrefix(prefix);
             results.add(packageRecord);
         }

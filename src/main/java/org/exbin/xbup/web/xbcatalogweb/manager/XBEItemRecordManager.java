@@ -50,7 +50,7 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * XBUP catalog XBEItemRecord manager.
  *
- * @version 0.1.24 2015/01/16
+ * @version 0.2.0 2017/01/13
  * @author ExBin Project (http://exbin.org)
  */
 @Repository
@@ -184,7 +184,7 @@ public class XBEItemRecordManager implements XBCItemRecordManager {
                 + " LEFT JOIN XBXDesc dsc ON dsc.item = item AND name.lang.id = " + languageId
                 + " LEFT JOIN XBXStri stri ON stri.item = item ORDER BY item.id";
         Query query = em.createQuery(queryString);
-        List<XBCItemRecord> results = new ArrayList<XBCItemRecord>();
+        List<XBCItemRecord> results = new ArrayList<>();
         for (Object row : query.getResultList()) {
             XBEItemRecord itemRecord = new XBEItemRecord();
             itemRecord.setItem((XBEItem) ((Object[]) row)[0]);
@@ -237,7 +237,7 @@ public class XBEItemRecordManager implements XBCItemRecordManager {
                 "SELECT COUNT(item) from XBItem item"
                 + (filterCondition == null
                 || filterCondition.isEmpty() ? ""
-                        : " WHERE ")
+                : " WHERE ")
                 + filterPrefix
                 + filterCondition
                 + filterPostfix
@@ -259,13 +259,13 @@ public class XBEItemRecordManager implements XBCItemRecordManager {
                 + " LEFT JOIN XBXStri stri ON stri.item = item"
                 + (filterCondition == null
                 || filterCondition.isEmpty() ? ""
-                        : " WHERE "
-                        + filterCondition)
+                : " WHERE "
+                + filterCondition)
                 + " ORDER BY " + orderCondition);
         query.setFirstResult(startFrom);
         query.setMaxResults(maxResults);
 
-        List<XBCItemRecord> results = new ArrayList<XBCItemRecord>();
+        List<XBCItemRecord> results = new ArrayList<>();
         for (Object row : query.getResultList()) {
             XBEItemRecord itemRecord = new XBEItemRecord();
             itemRecord.setItem((XBEItem) ((Object[]) row)[0]);
@@ -335,6 +335,7 @@ public class XBEItemRecordManager implements XBCItemRecordManager {
         return itemRecord;
     }
 
+    @Override
     public XBCFullItemRecord createForEdit() {
         XBEFullItemRecord itemRecord = new XBEFullItemRecord();
         itemRecord.setLanguage(langManager.getDefaultLang());
@@ -368,7 +369,7 @@ public class XBEItemRecordManager implements XBCItemRecordManager {
                 + (selectedPackageId == null ? "" : " WHERE item.parent.id = " + selectedPackageId)
                 + " ORDER BY item.id";
         Query query = em.createQuery(queryString);
-        List<XBCItemRecord> results = new ArrayList<XBCItemRecord>();
+        List<XBCItemRecord> results = new ArrayList<>();
         for (Object row : query.getResultList()) {
             XBEItemRecord itemRecord = new XBEItemRecord();
             itemRecord.setItem((XBEItem) ((Object[]) row)[0]);
@@ -396,11 +397,13 @@ public class XBEItemRecordManager implements XBCItemRecordManager {
         return null;
     }
 
+    @Override
     public XBCFullItemRecord findNodeByPath(Long[] path) {
         XBENode node = nodeManager.findNodeByXBPath(path);
         return node == null ? null : findForEditById(node.getId());
     }
 
+    @Override
     public XBCFullItemRecord findFormatSpecByPath(Long[] path) {
         if (path.length == 0) {
             return null;
@@ -410,6 +413,7 @@ public class XBEItemRecordManager implements XBCItemRecordManager {
         return spec == null ? null : findForEditById(spec.getId());
     }
 
+    @Override
     public XBCFullItemRecord findGroupSpecByPath(Long[] path) {
         if (path.length < 2) {
             return null;
@@ -419,6 +423,7 @@ public class XBEItemRecordManager implements XBCItemRecordManager {
         return spec == null ? null : findForEditById(spec.getId());
     }
 
+    @Override
     public XBCFullItemRecord findBlockSpecByPath(Long[] path) {
         if (path.length < 2) {
             return null;

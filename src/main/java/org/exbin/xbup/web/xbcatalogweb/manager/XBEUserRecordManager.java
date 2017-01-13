@@ -35,7 +35,7 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * XBUP catalog XBEUserRecord manager.
  *
- * @version 0.1.23 2014/05/29
+ * @version 0.2.0 2017/01/13
  * @author ExBin Project (http://exbin.org)
  */
 @Repository
@@ -95,7 +95,7 @@ public class XBEUserRecordManager implements XBCUserRecordManager {
                 + " LEFT JOIN XBXUserInfo info ON info.user = user"
                 + " ORDER BY user.id";
         Query query = em.createQuery(queryString);
-        List<XBCUserRecord> results = new ArrayList<XBCUserRecord>();
+        List<XBCUserRecord> results = new ArrayList<>();
         for (Object row : query.getResultList()) {
             XBEUserRecord itemRecord = new XBEUserRecord();
             itemRecord.setUser((XBEXUser) ((Object[]) row)[0]);
@@ -158,7 +158,7 @@ public class XBEUserRecordManager implements XBCUserRecordManager {
         query.setFirstResult(startFrom);
         query.setMaxResults(maxResults);
 
-        List<XBCUserRecord> results = new ArrayList<XBCUserRecord>();
+        List<XBCUserRecord> results = new ArrayList<>();
         for (Object row : query.getResultList()) {
             XBEUserRecord itemRecord = new XBEUserRecord();
             itemRecord.setUser((XBEXUser) ((Object[]) row)[0]);
