@@ -3,8 +3,8 @@ apply plugin: 'war'
 apply plugin: 'maven'
 
 sourceCompatibility = '1.7'
-version = '0.2.0-SNAPSHOT'
-ext.xbupVersion = '0.2.0-SNAPSHOT'
+version = '0.2.0'
+ext.xbupVersion = '0.2.0'
 
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 if (!hasProperty('mainClass')) {
@@ -50,7 +50,6 @@ dependencies {
     compile 'org.springframework:spring-web:3.2.3.RELEASE'
     compile 'javax.servlet.jsp.jstl:javax.servlet.jsp.jstl-api:1.2.1'
     compile 'org.glassfish.web:javax.servlet.jsp.jstl:1.2.2'
-    // compile 'mysql:mysql-connector-java:5.1.30'
     compile 'org.mariadb.jdbc:mariadb-java-client:1.5.5'
     compile 'org.eclipse.persistence:eclipselink:2.5.1'
 
@@ -66,7 +65,7 @@ task createPom << {
         project {
             groupId 'org.exbin.xbup.web'
             artifactId 'xbcatalogweb'
-            version '0.2.0-SNAPSHOT'
+            version '0.2.0'
 
             packaging 'war'
             licenses {

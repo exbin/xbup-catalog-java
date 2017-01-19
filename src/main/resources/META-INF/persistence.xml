@@ -147,6 +147,9 @@
       <property name="javax.persistence.jdbc.driver" value="org.mariadb.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.user" value="xbup"/>
       <property name="javax.persistence.logging.level" value="INFO"/>
+      <property name="javax.persistence.jdbc.uppercase-columns" value="true"/>
+      <property name="javax.persistence.identifier.case" value="LowerCase"/>
+      <property name="org.jpox.identifier.case" value="LowerCase"/>
     </properties>
   </persistence-unit>
 </persistence>
