@@ -1,4 +1,4 @@
-rootProject.name = 'xbcatalogweb'
+rootProject.name = 'xbup-catalog-java'
 
 include ":modules:xbup-core"
 include ":modules:xbup-catalog"
