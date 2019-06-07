@@ -1,8 +1,9 @@
 apply plugin: 'java'
 apply plugin: 'war'
 apply plugin: 'maven'
+import org.gradle.util.VersionNumber
 
-sourceCompatibility = '1.7'
+sourceCompatibility = '1.8'
 version = '0.2.1-SNAPSHOT'
 ext.xbupVersion = '0.2.1-SNAPSHOT'
 
@@ -12,11 +13,23 @@ if (!hasProperty('mainClass')) {
 }
 
 tasks.withType(JavaCompile) {
+    options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
     doFirst {
         options.fork = true
-        options.bootClasspath = "${System.properties['java.home']}/lib/rt.jar"
-        options.bootClasspath += "$File.pathSeparator${System.properties['java.home']}/jre/lib/jsse.jar"
+        if (JavaVersion.current() == JavaVersion.VERSION_1_8) {
+            if (VersionNumber.parse(gradle.gradleVersion) >= VersionNumber.parse('5.0')) {
+                options.bootstrapClasspath = files("${System.properties['java.home']}/lib/rt.jar", "$File.pathSeparator${System.properties['java.home']}/jre/lib/jsse.jar")
+            } else {
+                options.bootClasspath = "${System.properties['java.home']}/lib/rt.jar"
+                options.bootClasspath += "$File.pathSeparator${System.properties['java.home']}/jre/lib/jsse.jar"
+            }
+        }
     }
+}
+
+// Disable tests on build
+if (!gradle.startParameter.taskNames.any {it.endsWith("test")}) {
+    tasks.withType(Test) {enabled = false}
 }
 
 repositories {
@@ -27,18 +40,15 @@ repositories {
     mavenCentral()
 }
 
-// Disable tests on build
-check.dependsOn.remove(test)
-
 dependencies {
     compile "org.exbin.xbup:xbup-core:${xbupVersion}"
     compile "org.exbin.xbup:xbup-catalog:${xbupVersion}"
-    providedCompile 'javax.servlet:servlet-api:2.5'
-    providedCompile 'javax.servlet.jsp:jsp-api:2.2'
-    providedCompile 'org.eclipse.persistence:org.eclipse.persistence.jpa.modelgen.processor:2.5.1'
+    providedCompile 'javax.servlet:javax.servlet-api:4.0.1'
+    providedCompile 'javax.servlet.jsp:javax.servlet.jsp-api:2.3.3'
+    providedCompile 'org.eclipse.persistence:org.eclipse.persistence.jpa.modelgen.processor:2.7.4'
     compile 'org.glassfish:javax.faces:2.2.4'
-    compile 'org.richfaces.core:richfaces-core-impl:4.3.5.Final'
-    compile 'org.richfaces.ui:richfaces-components-ui:4.3.5.Final'
+    compile 'org.richfaces.core:richfaces-core-impl:4.3.7.Final'
+    compile 'org.richfaces.ui:richfaces-components-ui:4.3.7.Final'
     compile 'org.springframework:spring-core:3.2.3.RELEASE'
     compile 'org.springframework:spring-beans:3.2.3.RELEASE'
     compile 'org.springframework:spring-context:3.2.3.RELEASE'
@@ -49,6 +59,9 @@ dependencies {
     compile 'org.springframework:spring-orm:3.2.3.RELEASE'
     compile 'org.springframework:spring-web:3.2.3.RELEASE'
     compile 'javax.servlet.jsp.jstl:javax.servlet.jsp.jstl-api:1.2.1'
+    compile 'javax.xml.bind:jaxb-api:2.4.0-b180830.0359'
+    compile 'org.glassfish.jaxb:jaxb-runtime:2.4.0-b180830.0438'
+//    compile 'com.sun.xml.bind:jaxb-impl:2.4.0-b180830.0438'
     compile 'org.glassfish.web:javax.servlet.jsp.jstl:1.2.2'
     compile 'org.mariadb.jdbc:mariadb-java-client:1.5.5'
     compile 'org.eclipse.persistence:eclipselink:2.5.1'
@@ -60,12 +73,12 @@ war {
     from 'src/webapp'
 }
 
-task createPom << {
+task createPom {
     pom {
         project {
             groupId 'org.exbin.xbup.web'
             artifactId 'xbcatalogweb'
-            version '0.2.1-SNAPSHOT'
+            version "${version}"
 
             packaging 'war'
             licenses {
