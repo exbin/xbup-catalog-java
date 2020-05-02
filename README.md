@@ -1,39 +1,22 @@
-XBUP Java Catalog Web Application
-=================================
+eXtensible Binary Universal Protocol - Catalog Web Service
+==========================================================
 
-TODO
-
-This is web application for accessing XBUP catalog content.
-
-XBUP: eXtensible Binary Universal Protocol
-==========================================
-
-The goal of this project is to design and to provide an open-source support for unified general binary data representation format.
-
-This should provide following advantages:
-
- * Advanced Data Structures - Unified structure should allow to combine various types of data together
- * Efficiency - Optional compression and encryption on multiple levels should allow effective representation of binary data
- * Flexibility - General framework should provide data transformations/processing and compatibility issues solving capability
- * Comprehensibility - Catalog of data types, metadata, relations and abstraction should allow better understanding of data
+This is web application for accessing XBUP catalog content via web browser.
 
 Homepage: http://xbup.exbin.org  
-
-This repository contains Java implementation of the protocol and support tools and sample files.
 
 Compiling
 ---------
 
-Java Development Kit (JDK) version 7 or later is required to build this project.
+Java Development Kit (JDK) version 8 or later is required to build this project.
 
-For project compiling Gradle 2.0 build system is used. You can either download and install gradle and run "gradle build" command in project folder or gradlew or gradlew.bat scripts to download separate copy of gradle to perform the project build.
+For project compiling Gradle 6.0 build system is used: http://gradle.org
 
-Build system website: http://gradle.org
+You can either download and install gradle or use gradlew or gradlew.bat scripts to download separate copy of gradle to perform the project build.
 
-Development
------------
+Build commands: "gradle build" and "gradle distZip"
 
- * NetBeans 8.0 or later was used
+Dependecies are either downloaded or loaded from local maven repository. 
 
 Althought project can be opened using gradle plugin, it doesn't support code completition in web pages. As an alternative way, you can generate pom.xml using following command:
 
@@ -49,5 +32,4 @@ License
 
 Project uses various libraries with specific licenses and some tools are licensed with multiple licenses with exceptions for specific modules to cover license requirements for used libraries.
 
-Main license is: GNU/LGPL (see gpl-3.0.txt AND lgpl-3.0.txt)  
-License for documentation: GNU/FDL (see doc/fdl-1.3.txt)  
+Primary license: Apache License, Version 2.0 - see LICENSE-2.0.txt
