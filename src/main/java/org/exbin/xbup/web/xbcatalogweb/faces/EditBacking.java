@@ -62,7 +62,7 @@ public final class EditBacking implements Serializable {
     public EditBacking() {
         /* nodes = new ArrayList<XBENode>();
          XBENode node = new XBENode();
-         node.setId(new Long(1));
+         node.setId(1l);
          nodes.add(node); */
     }
 
@@ -142,7 +142,7 @@ public final class EditBacking implements Serializable {
     }
 
     public void createItem() {
-        itemEditBacking.setEditedItemId(new Long(0));
+        itemEditBacking.setEditedItemId(0l);
         itemEditBacking.createItem();
         lastActionSuccess = true;
     }
@@ -262,7 +262,7 @@ public final class EditBacking implements Serializable {
         public ItemPagedList() {
             size = itemRecordService.findAllPagedCount(filterCondition);
 
-            pages = new ArrayList<List<XBCItemRecord>>();
+            pages = new ArrayList<>();
             for (int i = 0; i < size / PAGE_SIZE + 1; i++) {
                 pages.add(null);
             }

@@ -55,7 +55,7 @@ public final class BrowseBacking implements Serializable {
     public BrowseBacking() {
         /* nodes = new ArrayList<XBENode>();
          XBENode node = new XBENode();
-         node.setId(new Long(1));
+         node.setId(1l);
          nodes.add(node); */
     }
 

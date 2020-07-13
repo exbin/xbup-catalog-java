@@ -44,7 +44,7 @@ public final class NodeBacking implements Serializable {
     public NodeBacking() {
         /* nodes = new ArrayList<XBENode>();
          XBENode node = new XBENode();
-         node.setId(new Long(1));
+         node.setId(1l);
          nodes.add(node); */
     }
 
