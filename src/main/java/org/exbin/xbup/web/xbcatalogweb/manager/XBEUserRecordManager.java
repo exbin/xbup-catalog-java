@@ -17,6 +17,8 @@ package org.exbin.xbup.web.xbcatalogweb.manager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import javax.annotation.Nonnull;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -74,8 +76,9 @@ public class XBEUserRecordManager implements XBCUserRecordManager {
         userManager.removeItem(userRecord.getUser());
     }
 
+    @Nonnull
     @Override
-    public XBEUserRecord getItem(long itemId) {
+    public Optional<XBCUserRecord> getItem(long itemId) {
         String queryString = "SELECT user, info FROM XBXUser user"
                 + " LEFT JOIN XBXUserInfo info ON info.user = user"
                 + " WHERE user.id = " + itemId;
@@ -85,7 +88,7 @@ public class XBEUserRecordManager implements XBCUserRecordManager {
         itemRecord.setUser((XBEXUser) ((Object[]) row)[0]);
         itemRecord.setInfo((XBEXUserInfo) ((Object[]) row)[1]);
 
-        return itemRecord;
+        return Optional.of(itemRecord);
     }
 
     @Override

@@ -22,7 +22,7 @@ import org.exbin.xbup.core.catalog.base.XBCBase;
 /**
  * User record entity interface.
  *
- * @version 0.1.23 2014/05/23
+ * @version 0.2.1 2020/08/24
  * @author ExBin Project (http://exbin.org)
  */
 public interface XBCUserRecord extends XBCBase {
@@ -30,9 +30,4 @@ public interface XBCUserRecord extends XBCBase {
     XBEXUserInfo getInfo();
 
     XBEXUser getUser();
-
-    void setInfo(XBEXUserInfo info);
-
-    void setUser(XBEXUser user);
-
 }

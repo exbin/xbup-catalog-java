@@ -64,11 +64,11 @@ dependencies {
     implementation 'org.glassfish.jaxb:jaxb-runtime:2.4.0-b180830.0438'
 //    implementation 'com.sun.xml.bind:jaxb-impl:2.4.0-b180830.0438'
     implementation 'org.glassfish.web:javax.servlet.jsp.jstl:1.2.2'
-    implementation 'org.mariadb.jdbc:mariadb-java-client:1.5.5'
-    implementation 'org.eclipse.persistence:eclipselink:2.5.1'
+    implementation 'org.mariadb.jdbc:mariadb-java-client:2.6.2'
+    implementation 'org.eclipse.persistence:eclipselink:2.7.7'
     compileOnly group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.2'
     compileOnly 'javax.persistence:persistence-api:1.0.2'
-    compileOnly 'org.eclipse.persistence:javax.persistence:2.1.0'
+    compileOnly 'org.eclipse.persistence:javax.persistence:2.2.1'
     if (JavaVersion.current() != JavaVersion.VERSION_1_8) {
         // Workaround for @javax.annotation.Generated
         // see: https://github.com/grpc/grpc-java/issues/3633

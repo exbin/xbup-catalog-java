@@ -20,15 +20,15 @@ import org.exbin.xbup.catalog.entity.XBENode;
 import org.exbin.xbup.catalog.entity.XBEXDesc;
 import org.exbin.xbup.catalog.entity.XBEXName;
 import org.exbin.xbup.catalog.entity.XBEXStri;
-import org.exbin.xbup.web.xbcatalogweb.base.XBCPackageRecord;
+import org.exbin.xbup.web.xbcatalogweb.modifiable.XBMPackageRecord;
 
 /**
  * Package record entity.
  *
- * @version 0.1.23 2014/05/12
+ * @version 0.2.1 2020/08/24
  * @author ExBin Project (http://exbin.org)
  */
-public class XBEPackageRecord implements  Serializable, XBCPackageRecord {
+public class XBEPackageRecord implements  Serializable, XBMPackageRecord {
 
     private XBENode node;
     private XBEXStri stri;
@@ -48,8 +48,11 @@ public class XBEPackageRecord implements  Serializable, XBCPackageRecord {
     }
 
     @Override
-    public Long getId() {
-        return node == null ? null : node.getId();
+    public long getId() {
+        if (node == null) {
+            return 0;
+        }
+        return node.getId();
     }
 
     @Override

@@ -13,35 +13,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.exbin.xbup.web.xbcatalogweb.base;
+package org.exbin.xbup.web.xbcatalogweb.modifiable;
 
-import org.exbin.xbup.catalog.entity.XBENode;
-import org.exbin.xbup.catalog.entity.XBEXDesc;
-import org.exbin.xbup.catalog.entity.XBEXName;
-import org.exbin.xbup.catalog.entity.XBEXStri;
-import org.exbin.xbup.core.catalog.base.XBCBase;
+import org.exbin.xbup.web.xbcatalogweb.base.*;
+import javax.annotation.ParametersAreNonnullByDefault;
+import org.exbin.xbup.catalog.entity.XBEXHDoc;
+import org.exbin.xbup.catalog.entity.XBEXLanguage;
 
 /**
- * Package record entity interface.
+ * Full item record entity interface.
  *
  * @version 0.2.1 2020/08/24
  * @author ExBin Project (http://exbin.org)
  */
-public interface XBCPackageRecord extends XBCBase {
+@ParametersAreNonnullByDefault
+public interface XBMFullItemRecord extends XBMItemRecord, XBCFullItemRecord {
 
-    XBEXDesc getDesc();
+    void setDescription(String description);
 
-    String getFullName();
+    void setHdoc(XBEXHDoc hdoc);
 
-    XBEXName getName();
+    void setHdocText(String hdocText);
 
-    XBENode getNode();
+    void setItemName(String itemName);
 
-    String getPackageName();
+    void setLanguage(XBEXLanguage language);
 
-    String getPrefix();
+    void setParentNode(String parentNode);
 
-    XBEXStri getStri();
+    void setStringId(String stringId);
 
-    boolean isHasChildren();
 }

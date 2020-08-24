@@ -16,17 +16,19 @@
 package org.exbin.xbup.web.xbcatalogweb.base;
 
 import java.util.List;
+import javax.annotation.Nonnull;
 import org.exbin.xbup.catalog.entity.XBEXHDoc;
 import org.exbin.xbup.catalog.entity.XBEXLanguage;
 
 /**
  * Full item record entity interface.
  *
- * @version 0.1.24 2015/01/30
+ * @version 0.2.1 2020/08/24
  * @author ExBin Project (http://exbin.org)
  */
 public interface XBCFullItemRecord extends XBCItemRecord {
 
+    @Nonnull
     String getDescription();
 
     XBEXHDoc getHdoc();
@@ -35,28 +37,17 @@ public interface XBCFullItemRecord extends XBCItemRecord {
 
     String getHdocBodyText();
 
+    @Nonnull
     String getItemName();
 
+    @Nonnull
     XBEXLanguage getLanguage();
 
     String getParentNode();
 
+    @Nonnull
     String getStringId();
 
+    @Nonnull
     List<XBCDefinitionRecord> getDefinitions();
-
-    void setDescription(String description);
-
-    void setHdoc(XBEXHDoc hdoc);
-
-    void setHdocText(String hdocText);
-
-    void setItemName(String itemName);
-
-    void setLanguage(XBEXLanguage language);
-
-    void setParentNode(String parentNode);
-
-    void setStringId(String stringId);
-
 }

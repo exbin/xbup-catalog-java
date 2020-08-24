@@ -17,6 +17,8 @@ package org.exbin.xbup.web.xbcatalogweb.manager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import javax.annotation.Nonnull;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -91,7 +93,7 @@ public class XBEItemRecordManager implements XBCItemRecordManager {
         itemManager.persistItem(item.getItem());
 
         if (item.getStri().getText() == null || item.getStri().getText().isEmpty()) {
-            if (item.getStri().getId() == null) {
+            if (item.getStri().getId() == 0) {
                 striManager.removeItem(item.getStri());
             }
         } else {
@@ -99,7 +101,7 @@ public class XBEItemRecordManager implements XBCItemRecordManager {
         }
 
         if (item.getName().getText() == null || item.getName().getText().isEmpty()) {
-            if (item.getName().getId() == null) {
+            if (item.getName().getId() == 0) {
                 nameManager.removeItem(item.getName());
             }
         } else {
@@ -107,7 +109,7 @@ public class XBEItemRecordManager implements XBCItemRecordManager {
         }
 
         if (item.getDesc().getText() == null || item.getDesc().getText().isEmpty()) {
-            if (item.getDesc().getId() == null) {
+            if (item.getDesc().getId() == 0) {
                 descManager.removeItem(item.getDesc());
             }
         } else {
@@ -116,8 +118,8 @@ public class XBEItemRecordManager implements XBCItemRecordManager {
 
         if (item instanceof XBEFullItemRecord) {
             if (item.getDesc().getText() == null || item.getDesc().getText().isEmpty()) {
-                if (((XBEFullItemRecord) item).getHdoc().getId() == null) {
-                    if (((XBEFullItemRecord) item).getHdoc().getDocFile() != null && ((XBEFullItemRecord) item).getHdoc().getDocFile().getId() == null) {
+                if (((XBEFullItemRecord) item).getHdoc().getId() == 0) {
+                    if (((XBEFullItemRecord) item).getHdoc().getDocFile() != null && ((XBEFullItemRecord) item).getHdoc().getDocFile().getId() == 0) {
                         fileManager.removeItem(((XBEFullItemRecord) item).getHdoc().getDocFile());
                     }
 
@@ -133,20 +135,20 @@ public class XBEItemRecordManager implements XBCItemRecordManager {
     @Transactional
     @Override
     public void removeItem(XBCItemRecord item) {
-        if (item.getStri().getId() != null) {
+        if (item.getStri().getId() != 0) {
             striManager.removeItem(item.getStri());
         }
 
-        if (item.getName().getId() == null) {
+        if (item.getName().getId() == 0) {
             nameManager.removeItem(item.getName());
         }
 
-        if (item.getDesc().getId() == null) {
+        if (item.getDesc().getId() == 0) {
             descManager.removeItem(item.getDesc());
         }
 
-        if (((XBEFullItemRecord) item).getHdoc().getId() == null) {
-            if (((XBEFullItemRecord) item).getHdoc().getDocFile() != null && ((XBEFullItemRecord) item).getHdoc().getDocFile().getId() == null) {
+        if (((XBEFullItemRecord) item).getHdoc().getId() == 0) {
+            if (((XBEFullItemRecord) item).getHdoc().getDocFile() != null && ((XBEFullItemRecord) item).getHdoc().getDocFile().getId() == 0) {
                 fileManager.removeItem(((XBEFullItemRecord) item).getHdoc().getDocFile());
             }
 
@@ -158,7 +160,7 @@ public class XBEItemRecordManager implements XBCItemRecordManager {
     }
 
     @Override
-    public XBEItemRecord getItem(long itemId) {
+    public Optional<XBCItemRecord> getItem(long itemId) {
         long languageId = langManager.getDefaultLang().getId();
         String queryString = "SELECT item, name, dsc, stri FROM XBItem item"
                 + " LEFT JOIN XBXName name ON name.item = item AND name.lang.id = " + languageId
@@ -172,9 +174,10 @@ public class XBEItemRecordManager implements XBCItemRecordManager {
         itemRecord.setDesc((XBEXDesc) ((Object[]) row)[2]);
         itemRecord.setStri((XBEXStri) ((Object[]) row)[3]);
 
-        return itemRecord;
+        return Optional.of(itemRecord);
     }
 
+    @Nonnull
     @Override
     public List<XBCItemRecord> getAllItems() {
         long languageId = langManager.getDefaultLang().getId();

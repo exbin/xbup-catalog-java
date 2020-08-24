@@ -19,21 +19,23 @@ import java.io.Serializable;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.ParametersAreNonnullByDefault;
 import org.exbin.xbup.catalog.entity.XBEXDesc;
 import org.exbin.xbup.catalog.entity.XBEXFile;
 import org.exbin.xbup.catalog.entity.XBEXHDoc;
 import org.exbin.xbup.catalog.entity.XBEXLanguage;
 import org.exbin.xbup.catalog.entity.XBEXName;
 import org.exbin.xbup.web.xbcatalogweb.base.XBCDefinitionRecord;
-import org.exbin.xbup.web.xbcatalogweb.base.XBCFullItemRecord;
+import org.exbin.xbup.web.xbcatalogweb.modifiable.XBMFullItemRecord;
 
 /**
  * Full item record entity.
  *
- * @version 0.1.24 2015/01/30
+ * @version 0.2.1 2020/08/24
  * @author ExBin Project (http://exbin.org)
  */
-public class XBEFullItemRecord extends XBEItemRecord implements Serializable, XBCFullItemRecord {
+@ParametersAreNonnullByDefault
+public class XBEFullItemRecord extends XBEItemRecord implements Serializable, XBMFullItemRecord {
 
     private XBEXHDoc hdoc;
     private XBEXLanguage language;
@@ -99,7 +101,7 @@ public class XBEFullItemRecord extends XBEItemRecord implements Serializable, XB
     public void setHdocText(String hdocText) {
         if (hdoc == null) {
             XBEXFile hdocFile = new XBEXFile();
-            hdocFile.setFilename(getStri() == null ? getId().toString() : getStri().getText() + ".html");
+            hdocFile.setFilename(getStri() == null ? String.valueOf(getId()) : getStri().getText() + ".html");
             hdoc = new XBEXHDoc();
             hdoc.setDocFile(hdocFile);
             hdoc.setLang(language);
@@ -130,7 +132,7 @@ public class XBEFullItemRecord extends XBEItemRecord implements Serializable, XB
 
     public List<XBCDefinitionRecord> getDefinitions() {
         // TODO
-        return new ArrayList<XBCDefinitionRecord>();
+        return new ArrayList<>();
     }
 
     public String getHdocBodyText() {

@@ -16,6 +16,7 @@
 package org.exbin.xbup.web.xbcatalogweb.service;
 
 import java.util.List;
+import java.util.Optional;
 import org.exbin.xbup.catalog.entity.XBEXUser;
 import org.exbin.xbup.web.xbcatalogweb.base.XBCUserRecord;
 import org.exbin.xbup.web.xbcatalogweb.base.manager.XBCUserRecordManager;
@@ -55,7 +56,7 @@ public class XBEUserRecordService implements XBCUserRecordService {
     }
 
     @Override
-    public XBCUserRecord getItem(long itemId) {
+    public Optional<XBCUserRecord> getItem(long itemId) {
         return manager.getItem(itemId);
     }
 

@@ -24,7 +24,7 @@ import org.exbin.xbup.core.catalog.base.XBCBase;
 /**
  * Item record entity interface.
  *
- * @version 0.1.23 2014/05/23
+ * @version 0.2.1 2020/08/24
  * @author ExBin Project (http://exbin.org)
  */
 public interface XBCItemRecord extends XBCBase {
@@ -40,13 +40,4 @@ public interface XBCItemRecord extends XBCBase {
     String getNameOrId();
 
     XBEXStri getStri();
-
-    void setDesc(XBEXDesc desc);
-
-    void setItem(XBEItem item);
-
-    void setName(XBEXName name);
-
-    void setStri(XBEXStri stri);
-
 }

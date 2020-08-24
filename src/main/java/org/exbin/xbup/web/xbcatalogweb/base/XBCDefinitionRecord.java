@@ -15,24 +15,21 @@
  */
 package org.exbin.xbup.web.xbcatalogweb.base;
 
+import javax.annotation.Nonnull;
+
 /**
  * Full item record entity interface.
  *
- * @version 0.1.24 2014/11/11
+ * @version 0.2.1 2020/08/24
  * @author ExBin Project (http://exbin.org)
  */
 public interface XBCDefinitionRecord {
 
-    Integer getXbIndex();
+    int getXbIndex();
 
+    @Nonnull
     String getStringId();
 
+    @Nonnull
     String getName();
-
-    void setXBIndex(Integer xbIndex);
-
-    void setStringId(String stringId);
-
-    void setName(String itemName);
-
 }

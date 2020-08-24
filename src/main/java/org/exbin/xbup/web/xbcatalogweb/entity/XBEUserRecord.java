@@ -18,22 +18,25 @@ package org.exbin.xbup.web.xbcatalogweb.entity;
 import java.io.Serializable;
 import org.exbin.xbup.catalog.entity.XBEXUser;
 import org.exbin.xbup.catalog.entity.XBEXUserInfo;
-import org.exbin.xbup.web.xbcatalogweb.base.XBCUserRecord;
+import org.exbin.xbup.web.xbcatalogweb.modifiable.XBMUserRecord;
 
 /**
  * User record entity.
  *
- * @version 0.1.23 2014/04/10
+ * @version 0.2.1 2020/08/24
  * @author ExBin Project (http://exbin.org)
  */
-public class XBEUserRecord implements  Serializable, XBCUserRecord {
+public class XBEUserRecord implements Serializable, XBMUserRecord {
 
     private XBEXUser user;
     private XBEXUserInfo info;
 
     @Override
-    public Long getId() {
-        return user == null ? null : user.getId();
+    public long getId() {
+        if (user == null) {
+            return 0;
+        }
+        return user.getId();
     }
 
     @Override

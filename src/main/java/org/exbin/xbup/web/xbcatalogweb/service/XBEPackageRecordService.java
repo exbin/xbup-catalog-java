@@ -16,6 +16,7 @@
 package org.exbin.xbup.web.xbcatalogweb.service;
 
 import java.util.List;
+import java.util.Optional;
 import org.exbin.xbup.web.xbcatalogweb.base.XBCPackageRecord;
 import org.exbin.xbup.web.xbcatalogweb.base.manager.XBCPackageRecordManager;
 import org.exbin.xbup.web.xbcatalogweb.base.service.XBCPackageRecordService;
@@ -54,7 +55,7 @@ public class XBEPackageRecordService implements XBCPackageRecordService {
     }
 
     @Override
-    public XBCPackageRecord getItem(long itemId) {
+    public Optional<XBCPackageRecord> getItem(long itemId) {
         return manager.getItem(itemId);
     }
 

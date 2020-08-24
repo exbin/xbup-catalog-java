@@ -75,7 +75,7 @@ public final class BrowseBacking implements Serializable {
     }
 
     public void loadItems() {
-        selectedPackage = packageService.getItem(selectedPackageId);
+        selectedPackage = packageService.getItem(selectedPackageId).orElse(null);
         items = itemService.findAllByParent(selectedPackageId);
     }
 

@@ -34,15 +34,15 @@ import org.exbin.xbup.catalog.entity.XBESpecDef;
 import org.exbin.xbup.catalog.entity.XBEXDesc;
 import org.exbin.xbup.catalog.entity.XBEXName;
 import org.exbin.xbup.catalog.entity.XBEXStri;
-import org.exbin.xbup.web.xbcatalogweb.base.XBCItemRecord;
+import org.exbin.xbup.web.xbcatalogweb.modifiable.XBMItemRecord;
 
 /**
  * Item record entity.
  *
- * @version 0.1.23 2014/04/04
+ * @version 0.2.1 2020/08/24
  * @author ExBin Project (http://exbin.org)
  */
-public class XBEItemRecord implements  Serializable, XBCItemRecord {
+public class XBEItemRecord implements  Serializable, XBMItemRecord {
 
     private XBEItem item;
     private XBEXStri stri;
@@ -120,8 +120,11 @@ public class XBEItemRecord implements  Serializable, XBCItemRecord {
     }
 
     @Override
-    public Long getId() {
-        return item == null ? null : item.getId();
+    public long getId() {
+        if (item == null) {
+            return 0;
+        }
+        return item.getId();
     }
 
     @Override

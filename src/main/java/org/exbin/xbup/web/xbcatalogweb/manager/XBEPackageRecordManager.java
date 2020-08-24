@@ -18,6 +18,7 @@ package org.exbin.xbup.web.xbcatalogweb.manager;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -68,7 +69,7 @@ public class XBEPackageRecordManager implements XBCPackageRecordManager {
     }
 
     @Override
-    public XBEPackageRecord getItem(long itemId) {
+    public Optional<XBCPackageRecord> getItem(long itemId) {
         long languageId = langManager.getDefaultLang().getId();
         String queryString = "SELECT node, name, stri FROM XBNode node"
                 + " LEFT JOIN XBXName name ON name.item = node AND name.lang.id = " + languageId
@@ -80,7 +81,7 @@ public class XBEPackageRecordManager implements XBCPackageRecordManager {
         packageRecord.setName((XBEXName) ((Object[]) row)[1]);
         packageRecord.setStri((XBEXStri) ((Object[]) row)[2]);
 
-        return packageRecord;
+        return Optional.of(packageRecord);
     }
 
     @Override
@@ -179,7 +180,7 @@ public class XBEPackageRecordManager implements XBCPackageRecordManager {
         List<XBCPackageRecord> resultList = new ArrayList<>();
         List<List<XBCPackageRecord>> parentLists = new ArrayList<>();
         List<XBCPackageRecord> rootList = new LinkedList<>();
-        XBEPackageRecord root = getItem(nodeManager.getRootNode().getId());
+        XBEPackageRecord root = (XBEPackageRecord) getItem(nodeManager.getMainRootNode().getId()).get();
         root.setHasChildren(true);
 
         rootList.add(root);

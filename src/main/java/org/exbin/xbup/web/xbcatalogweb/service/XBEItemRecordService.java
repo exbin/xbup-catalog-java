@@ -17,6 +17,7 @@ package org.exbin.xbup.web.xbcatalogweb.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import org.exbin.xbup.catalog.entity.XBEXHDoc;
 import org.exbin.xbup.web.xbcatalogweb.base.XBCFullItemRecord;
 import org.exbin.xbup.web.xbcatalogweb.base.XBCItemRecord;
@@ -58,7 +59,7 @@ public class XBEItemRecordService implements XBCItemRecordService {
     }
 
     @Override
-    public XBCItemRecord getItem(long itemId) {
+    public Optional<XBCItemRecord> getItem(long itemId) {
         return manager.getItem(itemId);
     }
 

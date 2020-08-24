@@ -96,14 +96,14 @@ public final class UserBacking implements Serializable {
 
     public void editItem() {
         lastActionSuccess = false;
-        selectedUser = (XBEUserRecord) userRecordService.getItem(selectedItemId);
+        selectedUser = (XBEUserRecord) userRecordService.getItem(selectedItemId).orElse(null);
         resetPassword = false;
         lastActionSuccess = true;
     }
 
     public void deleteItem() {
         lastActionSuccess = false;
-        selectedUser = (XBEUserRecord) userRecordService.getItem(selectedItemId);
+        selectedUser = (XBEUserRecord) userRecordService.getItem(selectedItemId).orElse(null);
         lastActionSuccess = true;
     }
 

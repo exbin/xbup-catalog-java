@@ -13,35 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.exbin.xbup.web.xbcatalogweb.base;
+package org.exbin.xbup.web.xbcatalogweb.modifiable;
 
-import org.exbin.xbup.catalog.entity.XBENode;
-import org.exbin.xbup.catalog.entity.XBEXDesc;
-import org.exbin.xbup.catalog.entity.XBEXName;
-import org.exbin.xbup.catalog.entity.XBEXStri;
-import org.exbin.xbup.core.catalog.base.XBCBase;
+import javax.annotation.ParametersAreNonnullByDefault;
+import org.exbin.xbup.web.xbcatalogweb.base.*;
 
 /**
- * Package record entity interface.
+ * Full item record entity interface.
  *
  * @version 0.2.1 2020/08/24
  * @author ExBin Project (http://exbin.org)
  */
-public interface XBCPackageRecord extends XBCBase {
+@ParametersAreNonnullByDefault
+public interface XBMDefinitionRecord extends XBCDefinitionRecord {
 
-    XBEXDesc getDesc();
+    void setXBIndex(Integer xbIndex);
 
-    String getFullName();
+    void setStringId(String stringId);
 
-    XBEXName getName();
+    void setName(String itemName);
 
-    XBENode getNode();
-
-    String getPackageName();
-
-    String getPrefix();
-
-    XBEXStri getStri();
-
-    boolean isHasChildren();
 }
