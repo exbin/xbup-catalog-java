@@ -50,7 +50,7 @@ public final class NodeBacking implements Serializable {
 
     @PostConstruct
     public void init() {
-        nodes = nodeService.getAllItems();
+        nodes = (List) nodeService.getAllItems();
     }
 
     public List<XBENode> getNodes() {

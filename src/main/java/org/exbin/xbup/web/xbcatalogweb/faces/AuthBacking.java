@@ -132,7 +132,7 @@ public final class AuthBacking implements Serializable {
     }
 
     public void editProfile() {
-        selectedUser = userService.getItem(userId).orElse(null);
+        selectedUser = (XBEXUser) userService.getItem(userId).orElse(null);
         password = "";
         repeatedPassword = "";
     }

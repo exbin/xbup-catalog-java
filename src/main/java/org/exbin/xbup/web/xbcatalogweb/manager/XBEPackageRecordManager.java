@@ -180,7 +180,7 @@ public class XBEPackageRecordManager implements XBCPackageRecordManager {
         List<XBCPackageRecord> resultList = new ArrayList<>();
         List<List<XBCPackageRecord>> parentLists = new ArrayList<>();
         List<XBCPackageRecord> rootList = new LinkedList<>();
-        XBEPackageRecord root = (XBEPackageRecord) getItem(nodeManager.getMainRootNode().getId()).get();
+        XBEPackageRecord root = (XBEPackageRecord) getItem(nodeManager.getMainRootNode().get().getId()).get();
         root.setHasChildren(true);
 
         rootList.add(root);
