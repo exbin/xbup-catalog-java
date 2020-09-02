@@ -434,4 +434,9 @@ public class XBEItemRecordManager implements XBCItemRecordManager {
         XBESpec spec = specManager.findBlockSpecByXB(node, path[path.length - 1]);
         return spec == null ? null : findForEditById(spec.getId());
     }
+
+    @Override
+    public boolean initCatalog() {
+        return true;
+    }
 }

@@ -39,15 +39,15 @@ public interface XBCItemRecordManager extends XBCManager<XBCItemRecord>, Seriali
 
     XBCFullItemRecord findForEditById(Long selectedItemId);
 
-    public XBEXHDoc getItemDoc(XBEItemRecord selectedItem);
+    XBEXHDoc getItemDoc(XBEItemRecord selectedItem);
 
-    public XBCFullItemRecord createForEdit();
+    XBCFullItemRecord createForEdit();
 
-    public XBCFullItemRecord findNodeByPath(Long[] path);
+    XBCFullItemRecord findNodeByPath(Long[] path);
 
-    public XBCFullItemRecord findBlockSpecByPath(Long[] path);
+    XBCFullItemRecord findBlockSpecByPath(Long[] path);
 
-    public XBCFullItemRecord findGroupSpecByPath(Long[] path);
+    XBCFullItemRecord findGroupSpecByPath(Long[] path);
 
-    public XBCFullItemRecord findFormatSpecByPath(Long[] path);
+    XBCFullItemRecord findFormatSpecByPath(Long[] path);
 }

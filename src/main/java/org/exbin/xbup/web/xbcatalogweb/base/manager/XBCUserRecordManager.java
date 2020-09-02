@@ -24,7 +24,7 @@ import org.exbin.xbup.web.xbcatalogweb.base.XBCUserRecord;
 /**
  * XBUP catalog XBEUserRecord manager interface.
  *
- * @version 0.1.23 2014/05/23
+ * @version 0.2.1 2020/09/02
  * @author ExBin Project (http://exbin.org)
  */
 public interface XBCUserRecordManager extends XBCManager<XBCUserRecord>, Serializable {
@@ -33,6 +33,5 @@ public interface XBCUserRecordManager extends XBCManager<XBCUserRecord>, Seriali
 
     int findAllPagedCount(String filterCondition);
 
-    public void persistUser(XBEXUser user);
-
+    void persistUser(XBEXUser user);
 }

@@ -229,4 +229,9 @@ public class XBEPackageRecordManager implements XBCPackageRecordManager {
 
         return results;
     }
+
+    @Override
+    public boolean initCatalog() {
+        return true;
+    }
 }

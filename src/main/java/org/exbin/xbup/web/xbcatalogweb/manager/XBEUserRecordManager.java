@@ -170,4 +170,9 @@ public class XBEUserRecordManager implements XBCUserRecordManager {
 
         return results;
     }
+
+    @Override
+    public boolean initCatalog() {
+        return true;
+    }
 }
