@@ -222,7 +222,7 @@ public class XBEPackageRecordManager implements XBCPackageRecordManager {
             packageRecord.setNode((XBENode) ((Object[]) row)[0]);
             packageRecord.setName((XBEXName) ((Object[]) row)[1]);
             packageRecord.setStri((XBEXStri) ((Object[]) row)[2]);
-            packageRecord.setHasChildren((Long) ((Object[]) row)[3] == 1);
+            packageRecord.setHasChildren(((Integer) ((Object[]) row)[3]) == 1);
             packageRecord.setPrefix(prefix);
             results.add(packageRecord);
         }

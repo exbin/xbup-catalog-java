@@ -5,8 +5,8 @@ apply plugin: 'maven-publish'
 import org.gradle.util.VersionNumber
 
 sourceCompatibility = '1.8'
-version = '0.2.1-SNAPSHOT'
-ext.xbupVersion = '0.2.1-SNAPSHOT'
+version = '0.2.1'
+ext.xbupVersion = '0.2.1'
 
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 if (!hasProperty('mainClass')) {
