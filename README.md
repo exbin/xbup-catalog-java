@@ -3,20 +3,20 @@ eXtensible Binary Universal Protocol - Catalog Web Service
 
 This is web application for accessing XBUP catalog content via web browser.
 
-Homepage: http://xbup.exbin.org  
+Homepage: https://xbup.exbin.org  
 
 Compiling
 ---------
 
 Java Development Kit (JDK) version 8 or later is required to build this project.
 
-For project compiling Gradle 6.0 build system is used: http://gradle.org
+For project compiling Gradle 6.0 build system is used: https://gradle.org
 
 You can either download and install gradle or use gradlew or gradlew.bat scripts to download separate copy of gradle to perform the project build.
 
 Build commands: "gradle build" and "gradle distZip"
 
-Dependecies are either downloaded or loaded from local maven repository. 
+Dependencies are either downloaded or loaded from local maven repository. 
 
 Althought project can be opened using gradle plugin, it doesn't support code completition in web pages. As an alternative way, you can generate pom.xml using following command:
 
