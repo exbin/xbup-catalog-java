@@ -1,8 +1,5 @@
 rootProject.name = 'xbup-catalog-java'
 
-include ":modules:xbup-core"
-include ":modules:xbup-catalog"
-
 def modifyPath(project) {
     def rootProjectDir = rootProject.projectDir.parentFile.parent
     project.children.each { p ->
